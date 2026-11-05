@@ -58,25 +58,23 @@ body{margin:0;background:var(--color-canvas);color:var(--color-ink);font:400 16p
 .svc-chevron{appearance:none;border:0;background:none;display:grid;place-items:center;width:24px;height:44px;margin-left:2px;padding:0;color:var(--color-blue);cursor:pointer}
 .svc-chevron svg{width:14px;height:14px;transition:transform .3s ease}
 .svc-chevron[aria-expanded=true] svg{transform:rotate(180deg)}
-.svc-panel{position:absolute;top:100%;z-index:20;width:860px;max-width:100%;display:grid;grid-template-columns:180px minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto;max-height:min(424px,calc(100vh - var(--svc-top,0px) - 16px));background:var(--color-navy);color:#fff;border:1px solid var(--color-navy-line);border-radius:var(--radius-sm);overflow:hidden;animation:svc-drop .3s ease}
+.svc-panel{position:absolute;top:100%;z-index:20;width:1000px;max-width:100%;max-height:calc(100vh - var(--svc-top,0px) - 16px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#FFFFFF66 transparent;background:var(--color-navy);color:#fff;border:1px solid var(--color-navy-line);border-radius:var(--radius-sm);animation:svc-drop .3s ease}
 @keyframes svc-drop{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:none}}
-.svc-rail{display:flex;flex-direction:column;padding:15px 0 15px 30px;border-right:1px solid var(--color-navy-line);overflow-y:auto}
-.svc-tab{appearance:none;flex-shrink:0;position:relative;border:0;background:none;width:100%;height:34px;padding:0;text-align:left;font:400 16px/24px var(--font-body);color:#fff;white-space:nowrap;cursor:pointer;transition:color .3s ease}
-.svc-tab span,.svc-link span{display:inline-block;transition:transform .3s ease}
-.svc-tab::before,.svc-link::before{content:"";position:absolute;left:0;top:50%;width:16px;height:2px;margin-top:-1px;background:var(--color-green);opacity:0;transform:translateX(-10px);transition:transform .3s ease,opacity .3s ease}
-.svc-tab[aria-selected=true]{color:var(--color-green);font-weight:500}
-.svc-tab[aria-selected=true]::before{opacity:1;transform:none}
-.svc-tab[aria-selected=true] span{transform:translateX(26px)}
-.svc-list{overflow-y:auto;overscroll-behavior:contain;min-height:0;padding:20px 30px;scrollbar-width:thin;scrollbar-color:#FFFFFF66 transparent}
-.svc-items{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 30px;align-content:start}
-.svc-link{position:relative;display:flex;align-items:center;min-height:38px;font-size:16px;line-height:24px;color:#fff;text-decoration:none;white-space:nowrap;transition:color .3s ease}
+.svc-cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 24px;padding:24px 30px 14px}
+.svc-head{margin:0 0 8px;padding-bottom:10px;border-bottom:1px solid var(--color-navy-line);font-size:13px;line-height:16px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--color-on-navy-muted)}
+.svc-items{list-style:none;margin:0;padding:0}
+.svc-link{position:relative;display:flex;align-items:center;min-height:28px;padding-block:4px;font-size:14px;line-height:20px;color:#fff;text-decoration:none;transition:color .3s ease}
+.svc-link span{display:inline-block;transition:transform .3s ease}
+.svc-link::before{content:"";position:absolute;left:0;top:13px;width:16px;height:2px;background:var(--color-green);opacity:0;transform:translateX(-10px);transition:transform .3s ease,opacity .3s ease}
 a.svc-link:hover,a.svc-link:focus-visible{color:var(--color-green)}
 a.svc-link:hover::before,a.svc-link:focus-visible::before{opacity:1;transform:none}
-a.svc-link:hover span,a.svc-link:focus-visible span{transform:translateX(26px)}
+a.svc-link:hover span,a.svc-link:focus-visible span{transform:translateX(22px)}
 .svc-link.planned{color:var(--color-on-navy-muted)}
 .svc-link.planned::before{display:none}
 .svc-link.planned i{flex-shrink:0;width:7px;height:7px;margin-left:8px;border:1.5px dashed var(--color-on-navy-muted);border-radius:50%}
-.svc-foot{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 16px;padding:15px 30px;border-top:1px solid var(--color-navy-line);font-size:14px;line-height:22px}
+.svc-more{appearance:none;border:0;background:none;min-height:28px;margin-top:2px;padding:0;font:500 14px/20px var(--font-body);color:#fff;text-decoration:underline 1px var(--color-green);text-underline-offset:3px;cursor:pointer}
+.svc-more:hover{color:var(--color-green)}
+.svc-foot{position:sticky;bottom:0;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 16px;padding:12px 30px;background:var(--color-navy);border-top:1px solid var(--color-navy-line);font-size:14px;line-height:22px}
 .svc-all{font-weight:500;color:#fff;text-decoration:underline 1px var(--color-green);text-underline-offset:3px}
 .svc-call{display:flex;align-items:center;gap:8px;color:var(--color-on-navy-muted)}
 .svc-call svg{width:16px;height:16px;color:var(--color-green);flex-shrink:0}
@@ -95,8 +93,8 @@ a.svc-link:hover span,a.svc-link:focus-visible span{transform:translateX(26px)}
 .sheet-sub{padding:0 0 10px 10px}
 .sheet-cat{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:44px;appearance:none;border:0;background:none;padding:0;font:400 16px/24px var(--font-body);text-align:left;color:var(--color-ink-soft);cursor:pointer}
 .sheet-cat[aria-expanded=true]{color:var(--color-blue);font-weight:500}
-.sheet .svc-items{grid-template-columns:1fr;padding:0 0 8px 10px}
-.sheet .svc-link{min-height:44px;white-space:normal;color:var(--color-ink)}
+.sheet .svc-items{padding:0 0 8px 10px}
+.sheet .svc-link{min-height:44px;font-size:16px;line-height:24px;color:var(--color-ink)}
 .sheet .svc-link::before{display:none}
 .sheet .svc-link.planned{color:var(--color-ink-muted)}
 .sheet .svc-link.planned i{border-color:var(--color-ink-muted)}
@@ -125,7 +123,7 @@ a.svc-link:hover span,a.svc-link:focus-visible span{transform:translateX(26px)}
 @media(min-width:993px){.sheet{display:none}}
 @media(max-width:768px){.hc-utility-inner{justify-content:center}.hc-utility-group:first-child{display:none}.hero{padding:56px 0}}
 @media(max-width:480px){.hc-wrap{width:calc(100% - 32px)}.hc-nav-inner{height:72px}.hc-nav-logo img{width:150px}.hc-utility-group:last-child .hc-utility-divider,.hc-utility-group:last-child a:first-child{display:none}}
-@media(prefers-reduced-motion:reduce){.svc-panel{animation:none}.svc-tab,.svc-tab span,.svc-tab::before,.svc-link,.svc-link span,.svc-link::before,.svc-chevron svg{transition:none}}
+@media(prefers-reduced-motion:reduce){.svc-panel{animation:none}.svc-link,.svc-link span,.svc-link::before,.svc-chevron svg{transition:none}}
 </style>
 </head>
 <body>
@@ -156,8 +154,7 @@ a.svc-link:hover span,a.svc-link:focus-visible span{transform:translateX(26px)}
         <a href="https://www.highlightschicago.com/services" aria-current="page">Services</a>
         <button class="svc-chevron" id="svcBtn" aria-expanded="false" aria-controls="svcPanel" aria-label="Show services menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <div class="svc-panel" id="svcPanel" hidden>
-          <div class="svc-rail" id="svcRail" role="tablist" aria-orientation="vertical" aria-label="Service categories"></div>
-          <div class="svc-list" id="svcList" role="tabpanel" tabindex="-1"></div>
+          <div class="svc-cols" id="svcCols"></div>
           <div class="svc-foot">
             <a class="svc-all" href="https://www.highlightschicago.com/services">View all services →</a>
             <span class="svc-call">Not sure what you need? <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.500 1.500a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg><a href="tel:773-262-3333">(773) 262-3333</a></span>
@@ -190,25 +187,24 @@ const TABS = [{"name": "Electrical", "items": [["Electrical Repair", "electrical
 const BASE = "https://www.highlightschicago.com/services/";
 // Set to false on the live site: planned pages have no URL yet and would 404.
 let showPlanned = true;
-let active = 0;
-let hoverT = null, tabT = null;
+// Each column shows its top pages by search volume; the rest open in place.
+const CAP = 8;
+const expanded = {};
+let hoverT = null;
 const $ = id => document.getElementById(id);
 const esc = s => s.replace(/&/g, "&amp;");
 const visible = () => TABS.map(t => ({ name: t.name, items: t.items.filter(i => showPlanned || i[2]) })).filter(t => t.items.length);
 // Planned pages render as plain text, so nobody can click through to a 404.
 const itemHTML = ([n, p, live]) => `<li>${live ? `<a class="svc-link" href="${BASE + p}"><span>${esc(n)}</span></a>` : `<div class="svc-link planned" title="Planned page, not published yet"><span>${esc(n)}</span><i aria-hidden="true"></i></div>`}</li>`;
 
-function renderList() {
-  const tabs = visible();
-  active = Math.min(active, tabs.length - 1);
-  $("svcRail").querySelectorAll(".svc-tab").forEach((b, i) => {
-    b.setAttribute("aria-selected", i === active);
-    b.tabIndex = i === active ? 0 : -1;
-  });
-  const list = $("svcList");
-  list.setAttribute("aria-labelledby", "svcTab" + active);
-  list.innerHTML = `<ul class="svc-items">${tabs[active].items.map(itemHTML).join("")}</ul>`;
-  list.scrollTop = 0;
+function renderCols() {
+  $("svcCols").innerHTML = visible().map(t => {
+    const open = expanded[t.name];
+    const shown = open ? t.items : t.items.slice(0, CAP);
+    const extra = t.items.length - CAP;
+    const more = extra > 0 ? `<button class="svc-more" data-col="${esc(t.name)}" aria-expanded="${!!open}">${open ? "Show less" : `View ${extra} more`}</button>` : "";
+    return `<div class="svc-col"><p class="svc-head">${esc(t.name)}</p><ul class="svc-items">${shown.map(itemHTML).join("")}</ul>${more}</div>`;
+  }).join("");
 }
 function renderSheet() {
   const tabs = visible();
@@ -219,8 +215,7 @@ function renderSheet() {
     <div class="sheet-actions"><a class="btn-l btn-primary" href="https://www.highlightschicago.com/contact-us">Contact us</a><a class="btn-l btn-secondary" href="tel:773-262-3333"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.500 1.500a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>Call (773) 262-3333</a><p class="sheet-addr">5766 N Lincoln Ave, Chicago, IL 60659</p></div>`;
 }
 function render() {
-  $("svcRail").innerHTML = visible().map((t, i) => `<button class="svc-tab" role="tab" id="svcTab${i}" data-i="${i}" aria-controls="svcList"><span>${esc(t.name)}</span></button>`).join("");
-  renderList();
+  renderCols();
   renderSheet();
   const all = TABS.flatMap(t => t.items);
   $("nLive").textContent = all.filter(i => i[2]).length;
@@ -244,20 +239,12 @@ if (matchMedia("(hover: hover)").matches) {
   $("svcLi").addEventListener("pointerenter", () => { clearTimeout(hoverT); hoverT = setTimeout(() => setOpen(true), 70); });
   $("svcLi").addEventListener("pointerleave", () => { clearTimeout(hoverT); hoverT = setTimeout(() => setOpen(false), 240); });
 }
-const rail = $("svcRail");
-const pick = i => { active = i; renderList(); };
-// A short delay stops the list flickering when the pointer crosses other tabs on its way to a link.
-rail.addEventListener("pointerover", e => {
-  const b = e.target.closest(".svc-tab"); if (!b) return;
-  clearTimeout(tabT); tabT = setTimeout(() => pick(+b.dataset.i), 90);
-});
-rail.addEventListener("pointerleave", () => clearTimeout(tabT));
-rail.addEventListener("click", e => { const b = e.target.closest(".svc-tab"); if (b) { clearTimeout(tabT); pick(+b.dataset.i); } });
-rail.addEventListener("keydown", e => {
-  const n = visible().length;
-  const to = { ArrowDown: (active + 1) % n, ArrowUp: (active - 1 + n) % n, Home: 0, End: n - 1 }[e.key];
-  if (to !== undefined) { e.preventDefault(); pick(to); $("svcTab" + to).focus(); }
-  if (e.key === "ArrowRight") { const a = $("svcList").querySelector("a"); if (a) { e.preventDefault(); a.focus(); } }
+$("svcCols").addEventListener("click", e => {
+  const b = e.target.closest(".svc-more"); if (!b) return;
+  const name = b.closest(".svc-col").querySelector(".svc-head").textContent;
+  expanded[name] = !expanded[name];
+  renderCols();
+  [...document.querySelectorAll(".svc-more")].find(x => x.closest(".svc-col").querySelector(".svc-head").textContent === name)?.focus();
 });
 $("svcPanel").addEventListener("click", e => e.stopPropagation());
 document.addEventListener("click", () => isOpen() && setOpen(false));

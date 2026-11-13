@@ -30,42 +30,42 @@ body{margin:0;background:#fff;color:#181515;font:400 16px/26px Inter,system-ui,s
 .hero-actions a:first-child{background:#fff;color:#223D90}
 @media(max-width:768px){.hero{padding:56px 0}}
 @media(max-width:480px){.review-inner,.hero-inner{width:calc(100% - 32px)}}
-/* Site header: utility bar, main nav with the Services menu and a Brands link, phone sheet.
-   Highlights Chicago Design System v3 (Paper, "09 · Navigation" and the brand service page header).
-   Every value is a design-system token; nothing here depends on the page's own stylesheet. */
+/* Site header: the live highlightschicago.com nav (service area pages, 2026-11-13) with two additions:
+   a Brands link and the Services menu. Nothing is made smaller: the header frame widens from 1200px
+   to 1280px so the extra link and the Services arrow fit. Below that width the live nav's own states apply, a little earlier. */
 .sn{--sn-canvas:#FFFFFF;--sn-line:#E4E4E4;--sn-line-strong:#8F8F8F;--sn-ink:#181515;--sn-ink-soft:#454545;--sn-ink-muted:#6B6B6B;--sn-navy:#15202A;--sn-navy-line:#FFFFFF1A;--sn-on-navy-soft:#FFFFFFCC;--sn-on-navy-muted:#FFFFFF99;--sn-blue:#223D90;--sn-blue-deep:#182C69;--sn-green:#66B143;--sn-display:"Space Grotesk","Space Grotesk Fallback",system-ui,sans-serif;--sn-body:Inter,"Inter Fallback",system-ui,sans-serif;position:relative;z-index:40;font-family:var(--sn-body);-webkit-font-smoothing:antialiased}
 .sn *,.sn *::before,.sn *::after{box-sizing:border-box}
 .sn [hidden]{display:none!important}
 .sn :focus-visible{outline:3px solid color-mix(in srgb,var(--sn-blue) 45%,transparent);outline-offset:3px}
-.sn-wrap{width:min(1200px,calc(100% - 48px));margin-inline:auto}
+.sn-wrap{width:min(var(--sn-frame,1280px),calc(100% - 48px));margin-inline:auto}
 .sn-icon{flex-shrink:0;display:block}
 
 /* Utility bar: navy, 44px, Inter 14, green icons */
 .sn-utility{background:var(--sn-navy);color:var(--sn-on-navy-soft)}
-.sn-utility-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:44px;font-size:14px;line-height:20px}
+.sn-utility-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:44px;font-size:14px;line-height:26px}
 .sn-utility-group{display:flex;align-items:center;gap:24px}
 .sn-utility a,.sn-utility span{display:inline-flex;align-items:center;gap:8px;color:inherit;text-decoration:none;white-space:nowrap}
 .sn-utility .sn-icon{color:var(--sn-green)}
 .sn-sep{width:1px;height:16px;background:var(--sn-navy-line)}
-.sn-utility .sn-utility-phone{font-weight:600;color:#fff}
+.sn-utility .sn-utility-phone{font-weight:600}
 
 /* Main nav: white, 84px, 1px line under it */
 .sn-nav{position:relative;background:var(--sn-canvas);border-bottom:1px solid var(--sn-line)}
-.sn-nav-inner{position:relative;display:flex;align-items:center;justify-content:space-between;gap:24px;height:84px}
-.sn-logo{display:flex;align-items:center;flex-shrink:0}
-.sn-logo img{display:block;width:181px;height:auto}
-.sn-links{display:flex;align-items:center;gap:24px;margin:0;padding:0;list-style:none}
+.sn-nav-inner{position:relative;display:flex;align-items:center;gap:24px;min-height:84px}
+.sn-logo{display:flex;align-items:center;flex-shrink:0;margin-right:auto}
+.sn-logo img{display:block;width:181px;height:44px;object-fit:contain}
+.sn-links{display:flex;align-items:center;gap:16px;margin:0;padding:0;list-style:none}
 .sn-links>li{display:flex;align-items:center}
-.sn-top{font:500 15px/20px var(--sn-body);letter-spacing:.04em;text-transform:uppercase;color:var(--sn-ink);text-decoration:none;white-space:nowrap;transition:color .3s ease}
+.sn-top{font:500 14px/14px var(--sn-body);letter-spacing:.02em;text-transform:uppercase;color:var(--sn-ink);text-decoration:none;white-space:nowrap;transition:color .3s ease}
 .sn-top:hover,.sn-top.is-current,.sn-has-menu.is-open>.sn-top{color:var(--sn-blue)}
-.sn-chevron{appearance:none;display:grid;place-items:center;width:22px;height:44px;margin-left:2px;padding:0;border:0;background:none;color:var(--sn-ink);cursor:pointer;transition:color .3s ease}
+.sn-chevron{appearance:none;display:grid;place-items:center;width:16px;height:44px;margin-left:2px;padding:0;border:0;background:none;color:var(--sn-ink);cursor:pointer;transition:color .3s ease}
 .sn-chevron .sn-icon{transition:transform .3s ease}
 .sn-has-menu:hover>.sn-chevron,.sn-top.is-current+.sn-chevron,.sn-chevron[aria-expanded=true]{color:var(--sn-blue)}
 .sn-chevron[aria-expanded=true] .sn-icon{transform:rotate(180deg)}
-.sn-actions{display:flex;align-items:center;gap:20px;flex-shrink:0}
-.sn-phone{display:inline-flex;align-items:center;gap:8px;font:600 16px/24px var(--sn-display);letter-spacing:.02em;color:var(--sn-ink);text-decoration:none;white-space:nowrap}
+.sn-actions{display:flex;align-items:center;gap:24px;flex-shrink:0}
+.sn-phone{display:inline-flex;align-items:center;gap:10px;font:500 17px/1 var(--sn-body);color:var(--sn-ink);text-decoration:none;white-space:nowrap}
 .sn-phone .sn-icon{color:var(--sn-blue)}
-.sn-cta{display:inline-flex;align-items:center;height:44px;padding-inline:24px;border-radius:999px;background:var(--sn-blue);font:600 15px/20px var(--sn-display);letter-spacing:.02em;text-transform:uppercase;color:#fff;text-decoration:none;white-space:nowrap;transition:background .3s ease}
+.sn-cta{display:inline-flex;align-items:center;height:44px;padding-inline:22px;border-radius:999px;background:var(--sn-blue);font:600 15px/20px var(--sn-display);letter-spacing:.02em;text-transform:uppercase;color:#fff;text-decoration:none;white-space:nowrap;transition:background .3s ease}
 .sn-cta:hover{background:var(--sn-blue-deep)}
 .sn-burger{display:none;appearance:none;place-content:center;gap:4px;width:44px;height:44px;padding:0;border:1px solid var(--sn-line-strong);border-radius:999px;background:none;cursor:pointer}
 .sn-burger span{display:block;width:18px;height:2px;background:var(--sn-ink);transition:transform .3s ease,opacity .3s ease}
@@ -118,13 +118,11 @@ a.sn-link:hover>span,a.sn-link:focus-visible>span{transform:translateX(26px)}
 .sn-btn--secondary{border:1px solid var(--sn-ink);color:var(--sn-ink)}
 .sn-sheet-addr{margin:0;text-align:center;font-size:14px;line-height:22px;color:var(--sn-ink-muted)}
 
-/* Seven links fill the 1200 frame, so on desktop the phone number lives in the utility bar above
-   (white, 600) and the nav keeps the Contact us pill. Narrower desktops tighten the gaps. */
-@media (min-width:1101px){.sn-phone{display:none}}
-@media (max-width:1260px){.sn-links{gap:16px}.sn-top{font-size:14px}.sn-logo img{width:150px}.sn-utility-group:first-child>:not(:first-child){display:none}}
-
-/* Below 1100 (seven links no longer fit): menu sheet, a round call button first, then the menu button */
-@media (max-width:1100px){
+/* Where the 1280 frame no longer fits the window, the live nav's own narrower state takes over:
+   the nav-row phone number hides (it stays in the navy bar) and the link gaps go to 14px. */
+@media (max-width:1340px){.sn-phone{display:none}.sn-links{gap:14px}.sn-utility-group:first-child>:not(:first-child){display:none}}
+/* Below 1150 the links no longer fit: menu sheet, a round call button first, then the menu button */
+@media (max-width:1150px){
   .sn-links,.sn-cta{display:none}
   .sn-phone{display:grid;place-items:center;width:44px;height:44px;border-radius:999px;background:var(--sn-blue)}
   .sn-phone>span{display:none}
@@ -132,7 +130,7 @@ a.sn-link:hover>span,a.sn-link:focus-visible>span{transform:translateX(26px)}
   .sn-burger{display:grid}
   .sn-actions{gap:10px}
 }
-@media (min-width:1101px){.sn-sheet{display:none!important}}
+@media (min-width:1151px){.sn-sheet{display:none!important}}
 @media (max-width:768px){.sn-utility-inner{justify-content:center}.sn-utility-group:first-child{display:none}}
 @media (max-width:480px){.sn-wrap{width:calc(100% - 32px)}.sn-nav-inner{height:72px}.sn-logo img{width:148px}.sn-utility-group:last-child>.sn-sep,.sn-utility-group:last-child>a:first-child{display:none}}
 @media (prefers-reduced-motion:reduce){.sn-panel{animation:none}.sn-link,.sn-link>span,.sn-link::before,.sn-chevron .sn-icon,.sn-burger span{transition:none}}
@@ -145,14 +143,14 @@ a.sn-link:hover>span,a.sn-link:focus-visible>span{transform:translateX(26px)}
 </div></div>
 <div class="sn">
 <div class="sn-utility" aria-label="Business contact information"><div class="sn-wrap sn-utility-inner">
-<div class="sn-utility-group"><a href="https://www.google.com/maps/search/?api=1&amp;query=Highlights+Chicago+Inc+5766+N+Lincoln+Ave+Chicago"><svg class="sn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>5766 N Lincoln Ave, Chicago, IL 60659, United States</a><span class="sn-sep" aria-hidden="true"></span><span><svg class="sn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Mon–Fri 08:00 AM – 05:00 PM</span></div>
-<div class="sn-utility-group"><a href="mailto:info@highlightschicago.com"><svg class="sn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg>info@highlightschicago.com</a><span class="sn-sep" aria-hidden="true"></span><a class="sn-utility-phone" href="tel:+17732623333"><svg class="sn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>773-262-3333</a></div>
+<div class="sn-utility-group"><a href="https://www.google.com/maps/search/?api=1&amp;query=Highlights+Chicago+Inc+5766+N+Lincoln+Ave+Chicago"><svg class="sn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>5766 N Lincoln Ave, Suite 1, Chicago, IL 60659, United States</a><span class="sn-sep" aria-hidden="true"></span><span><svg class="sn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Mon–Fri 08:00 AM – 05:00 PM</span></div>
+<div class="sn-utility-group"><a href="mailto:info@highlightschicago.com"><svg class="sn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg>info@highlightschicago.com</a><span class="sn-sep" aria-hidden="true"></span><a class="sn-utility-phone" href="tel:+17732623333"><svg class="sn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>(773) 262-3333</a></div>
 </div></div>
 <header class="sn-nav"><div class="sn-wrap sn-nav-inner">
 <a class="sn-logo" href="https://www.highlightschicago.com/" aria-label="Highlights Chicago home"><img src="https://cdn.prod.website-files.com/69f58d69563c4c5bf9b01c60/6a3c3c20491b43b0858c1876_highlights-chicago-logo.webp" alt="Highlights Chicago Electrical Services" width="181" height="44"></a>
 <nav aria-label="Primary navigation"><ul class="sn-links">
 <li><a class="sn-top" href="https://www.highlightschicago.com/">Home</a></li>
-<li><a class="sn-top" href="https://www.highlightschicago.com/about-us">About Us</a></li>
+<li><a class="sn-top" href="https://www.highlightschicago.com/about-us">About us</a></li>
 <li class="sn-has-menu" data-menu="services">
 <a class="sn-top is-current" href="https://www.highlightschicago.com/services" aria-current="page">Services</a><button type="button" class="sn-chevron" aria-expanded="false" aria-controls="sn-panel-services" aria-label="Show services menu"><svg class="sn-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></button>
 <div class="sn-panel" id="sn-panel-services" hidden>
@@ -161,9 +159,10 @@ a.sn-link:hover>span,a.sn-link:focus-visible>span{transform:translateX(26px)}
 </div>
 </li>
 <li><a class="sn-top" href="https://logeshmaximus.github.io/highlights-chicago-brand-pages/brands/">Brands</a></li>
-<li><a class="sn-top" href="https://www.highlightschicago.com/service-areas">Service Areas</a></li>
+<li><a class="sn-top" href="https://www.highlightschicago.com/service-areas">Service areas</a></li>
+<li><a class="sn-top" href="https://www.highlightschicago.com/reviews">Reviews</a></li>
 <li><a class="sn-top" href="https://www.highlightschicago.com/blog">Blog</a></li>
-<li><a class="sn-top" href="https://www.highlightschicago.com/learning-center">Learning Center</a></li>
+<li><a class="sn-top" href="https://www.highlightschicago.com/learning-center">Learning center</a></li>
 </ul></nav>
 <div class="sn-actions"><a class="sn-phone" href="tel:+17732623333" aria-label="Call (773) 262-3333"><svg class="sn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><span>(773) 262-3333</span></a><a class="sn-cta" href="https://www.highlightschicago.com/contact-us">Contact us</a>
 <button type="button" class="sn-burger" aria-expanded="false" aria-controls="sn-sheet" aria-label="Open navigation menu"><span></span><span></span><span></span></button></div>
@@ -171,7 +170,7 @@ a.sn-link:hover>span,a.sn-link:focus-visible>span{transform:translateX(26px)}
 <div class="sn-sheet" id="sn-sheet" hidden><div class="sn-wrap">
 <ul class="sn-sheet-rows">
 <li><a class="sn-sheet-row" href="https://www.highlightschicago.com/">Home</a></li>
-<li><a class="sn-sheet-row" href="https://www.highlightschicago.com/about-us">About Us</a></li>
+<li><a class="sn-sheet-row" href="https://www.highlightschicago.com/about-us">About us</a></li>
 <li><button type="button" class="sn-sheet-row" aria-expanded="false" aria-controls="sn-sheet-services">Services<span class="sn-pm" aria-hidden="true"></span></button>
 <div class="sn-sheet-sub" id="sn-sheet-services" hidden>
 <button type="button" class="sn-sheet-cat" aria-expanded="false" aria-controls="sn-sheet-services-0">Electrical<span class="sn-pm" aria-hidden="true"></span></button><ul class="sn-items" id="sn-sheet-services-0" hidden><li><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-wiring/electrical-repair"><span>Electrical Repair</span></a></li><li><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-outlets/gfci-outlet-installation"><span>GFCI Outlets</span></a></li><li><a class="sn-link" href="https://www.highlightschicago.com/services/circuit-protection/circuit-breaker-replacement"><span>Circuit Breaker Replacement</span></a></li><li><a class="sn-link" href="https://www.highlightschicago.com/services/panel-upgrades/electrical-panel-upgrade"><span>Panel Upgrade</span></a></li><li><a class="sn-link" href="https://www.highlightschicago.com/services/circuit-protection/whole-house-surge-protector"><span>Whole-House Surge Protector</span></a></li><li><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-outlets/outlet-replacement-near-me"><span>Outlet Repair &amp; Replacement</span></a></li><li><a class="sn-link" href="https://www.highlightschicago.com/services/life-safety/fire-alarm-installation"><span>Fire Alarm Systems</span></a></li><li><a class="sn-link" href="https://www.highlightschicago.com/services/circuit-protection/electrical-panel-replacement-near-me"><span>Panel Replacement</span></a></li><li><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-wiring/electrical-troubleshooting"><span>Electrical Troubleshooting</span></a></li><li><a class="sn-link" href="https://www.highlightschicago.com/services/life-safety/smoke-detector-installation-and-wiring"><span>Smoke Detectors</span></a></li><li><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-wiring/electrical-inspection-near-me"><span>Electrical Safety Inspection</span></a></li><li><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-outlets/electrical-outlet-installation"><span>Outlet Installation</span></a></li><li><a class="sn-link" href="https://www.highlightschicago.com/services/circuit-protection/breaker-box-and-panel-repair"><span>Panel Repair &amp; Maintenance</span></a></li><li><a class="sn-link" href="https://www.highlightschicago.com/services/panel-upgrades/electrical-panel-installation-near-me"><span>Panel Installation</span></a></li><li><a class="sn-link" href="https://www.highlightschicago.com/services/life-safety/carbon-monoxide-detector-installation"><span>Carbon Monoxide Detectors</span></a></li><li><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-wiring/whole-house-rewiring-near-me"><span>Whole-House Rewiring</span></a></li><li><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-wiring/electrical-wiring-and-repair-services"><span>Wiring Repair</span></a></li><li><a class="sn-link" href="https://www.highlightschicago.com/services/circuit-protection/grounding-and-bonding"><span>Grounding &amp; Bonding</span></a></li><li><a class="sn-link" href="https://www.highlightschicago.com/services/panel-upgrades/electrical-service-upgrade-near-me"><span>100 to 200 Amp Service Upgrade</span></a></li><li><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-outlets/light-switch-replacement-and-installation"><span>Light Switches</span></a></li><li><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-wiring/new-construction-electrician-near-me"><span>New Construction Wiring</span></a></li><li><a class="sn-link" href="https://www.highlightschicago.com/services/solar-energy/infrared-electrical-inspection"><span>Infrared / Thermal Inspection</span></a></li><li><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-outlets/dimmer-switch-installation-and-replacement"><span>Dimmer Switches</span></a></li></ul>
@@ -181,9 +180,10 @@ a.sn-link:hover>span,a.sn-link:focus-visible>span{transform:translateX(26px)}
 <a class="sn-sheet-all" href="https://www.highlightschicago.com/services">View all services →</a>
 </div></li>
 <li><a class="sn-sheet-row" href="https://logeshmaximus.github.io/highlights-chicago-brand-pages/brands/">Brands</a></li>
-<li><a class="sn-sheet-row" href="https://www.highlightschicago.com/service-areas">Service Areas</a></li>
+<li><a class="sn-sheet-row" href="https://www.highlightschicago.com/service-areas">Service areas</a></li>
+<li><a class="sn-sheet-row" href="https://www.highlightschicago.com/reviews">Reviews</a></li>
 <li><a class="sn-sheet-row" href="https://www.highlightschicago.com/blog">Blog</a></li>
-<li><a class="sn-sheet-row" href="https://www.highlightschicago.com/learning-center">Learning Center</a></li>
+<li><a class="sn-sheet-row" href="https://www.highlightschicago.com/learning-center">Learning center</a></li>
 </ul>
 <div class="sn-sheet-actions"><a class="sn-btn sn-btn--primary" href="https://www.highlightschicago.com/contact-us">Contact us</a><a class="sn-btn sn-btn--secondary" href="tel:+17732623333"><svg class="sn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>Call (773) 262-3333</a><p class="sn-sheet-addr">5766 N Lincoln Ave, Chicago, IL 60659</p></div>
 </div></div>

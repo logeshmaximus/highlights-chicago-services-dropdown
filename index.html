@@ -4,277 +4,315 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
-<title>Services Dropdown Preview</title>
+<title>Site Nav Preview</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap">
 <style>
-/* Tokens: Highlights Chicago Design System v3 */
-:root{--color-canvas:#FFFFFF;--color-canvas-alt:#F6F6F6;--color-line:#E4E4E4;--color-line-strong:#8F8F8F;--color-ink:#181515;--color-ink-soft:#454545;--color-ink-muted:#6B6B6B;--color-navy:#15202A;--color-navy-line:#FFFFFF1A;--color-on-navy-muted:#FFFFFF99;--color-on-navy-soft:#FFFFFFCC;--color-blue:#223D90;--color-blue-deep:#182C69;--color-green:#66B143;--font-display:"Space Grotesk",system-ui,sans-serif;--font-body:Inter,system-ui,sans-serif;--radius-sm:4px;--radius-md:10px;--radius-full:999px;--container-frame:1200px;color-scheme:light}
-*{box-sizing:border-box}
-[hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--color-canvas);color:var(--color-ink);font:400 16px/26px var(--font-body);-webkit-font-smoothing:antialiased}
-:focus-visible{outline:3px solid color-mix(in srgb,var(--color-blue) 45%,transparent);outline-offset:3px}
-.hc-wrap{width:min(var(--container-frame),calc(100% - 48px));margin-inline:auto}
-
+body{margin:0;background:#fff;color:#181515;font:400 16px/26px Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 /* Preview controls: not part of the component */
-.review{background:var(--color-canvas-alt);border-bottom:1px solid var(--color-line);font-size:13px;line-height:16px;color:var(--color-ink-muted)}
-.review .hc-wrap{display:flex;flex-wrap:wrap;gap:4px 18px;align-items:center;min-height:40px;padding-block:4px}
-.review strong{color:var(--color-ink);font-weight:600}
-.review label{display:inline-flex;gap:7px;align-items:center;min-height:32px;cursor:pointer;color:var(--color-ink);font-weight:500}
-.review input{width:16px;height:16px;margin:0;accent-color:var(--color-blue)}
-
-/* Header: same as highlightschicago.com/services */
-.hc-utility{background:var(--color-navy);color:var(--color-on-navy-soft)}
-.hc-utility-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:44px;font-size:14px;line-height:20px}
-.hc-utility-group{display:flex;align-items:center;gap:24px}
-.hc-utility a,.hc-utility span{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:inherit;white-space:nowrap}
-.hc-utility svg{width:16px;height:16px;color:var(--color-green);flex-shrink:0}
-.hc-utility-divider{width:1px;height:16px;background:var(--color-navy-line)}
-.hc-utility .hc-utility-phone{font-weight:600;color:#fff}
-.hc-nav{background:var(--color-canvas);border-bottom:1px solid var(--color-line);position:relative;z-index:20}
-.hc-nav-inner{position:relative;display:flex;align-items:center;justify-content:space-between;gap:24px;height:84px}
-.hc-nav-logo{display:flex;align-items:center}
-.hc-nav-logo img{display:block;width:181px;height:auto}
-.hc-nav-links{display:flex;align-items:stretch;align-self:stretch;gap:24px;list-style:none;margin:0;padding:0}
-.hc-nav-links>li{display:flex;align-items:center}
-.hc-nav-links>li>a{font-size:14px;line-height:20px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;color:var(--color-ink);white-space:nowrap;transition:color .3s ease}
-.hc-nav-links>li>a:hover,.hc-nav-links>li>a[aria-current=page]{color:var(--color-blue)}
-.hc-nav-actions{display:flex;align-items:center;gap:18px}
-.hc-nav-phone{display:inline-flex;align-items:center;gap:8px;font:600 16px/24px var(--font-display);letter-spacing:.02em;text-decoration:none;color:var(--color-ink);white-space:nowrap}
-.hc-nav-phone svg{width:18px;height:18px;color:var(--color-blue)}
-.hc-nav-cta{display:inline-flex;align-items:center;height:44px;padding-inline:20px;border-radius:var(--radius-full);background:var(--color-blue);font:600 15px/20px var(--font-display);letter-spacing:.02em;text-transform:uppercase;text-decoration:none;color:#fff;white-space:nowrap;transition:background .3s ease}
-.hc-nav-cta:hover{background:var(--color-blue-deep)}
-.hc-nav-burger{display:none;appearance:none;background:none;place-content:center;gap:4px;width:44px;height:44px;padding:0;border:1px solid var(--color-line-strong);border-radius:var(--radius-full);cursor:pointer}
-.hc-nav-burger span{display:block;width:18px;height:2px;background:var(--color-ink)}
-.hc-nav-burger[aria-expanded=true]{background:var(--color-ink);border-color:var(--color-ink)}
-.hc-nav-burger[aria-expanded=true] span{background:#fff}
-.hc-nav-burger[aria-expanded=true] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
-.hc-nav-burger[aria-expanded=true] span:nth-child(2){opacity:0}
-.hc-nav-burger[aria-expanded=true] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
-
-/* ===== Services dropdown ===== */
-.svc-chevron{appearance:none;border:0;background:none;display:grid;place-items:center;width:24px;height:44px;margin-left:2px;padding:0;color:var(--color-blue);cursor:pointer}
-.svc-chevron svg{width:14px;height:14px;transition:transform .3s ease}
-.svc-chevron[aria-expanded=true] svg{transform:rotate(180deg)}
-.svc-panel{position:absolute;top:100%;z-index:20;width:1000px;max-width:100%;max-height:calc(100vh - var(--svc-top,0px) - 16px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#FFFFFF66 transparent;background:var(--color-navy);color:#fff;border:1px solid var(--color-navy-line);border-radius:var(--radius-sm);animation:svc-drop .3s ease}
-@keyframes svc-drop{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:none}}
-.svc-cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 24px;padding:24px 30px 14px}
-.svc-head{margin:0 0 8px;padding-bottom:10px;border-bottom:1px solid var(--color-navy-line);font-size:15px;line-height:20px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--color-green)}
-.svc-items{list-style:none;margin:0;padding:0}
-.svc-link{position:relative;display:flex;align-items:center;min-height:28px;padding-block:4px;font-size:14px;line-height:20px;color:#fff;text-decoration:none;transition:color .3s ease}
-.svc-link span{display:inline-block;transition:transform .3s ease}
-.svc-link::before{content:"";position:absolute;left:0;top:13px;width:16px;height:2px;background:var(--color-green);opacity:0;transform:translateX(-10px);transition:transform .3s ease,opacity .3s ease}
-a.svc-link:hover,a.svc-link:focus-visible{color:var(--color-green)}
-a.svc-link:hover::before,a.svc-link:focus-visible::before{opacity:1;transform:none}
-a.svc-link:hover span,a.svc-link:focus-visible span{transform:translateX(22px)}
-.svc-link.planned{color:var(--color-on-navy-muted)}
-.svc-link.planned::before{display:none}
-.svc-link.planned i{flex-shrink:0;width:7px;height:7px;margin-left:8px;border:1.5px dashed var(--color-on-navy-muted);border-radius:50%}
-.svc-more{appearance:none;border:0;background:none;min-height:28px;margin-top:2px;padding:0;font:500 14px/20px var(--font-body);color:var(--color-green);text-decoration:underline 1px var(--color-green);text-underline-offset:3px;cursor:pointer;transition:color .3s ease}
-.svc-more:hover{color:#fff}
-.svc-foot{position:sticky;bottom:0;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 16px;padding:12px 30px;background:var(--color-navy);border-top:1px solid var(--color-navy-line);font-size:16px;line-height:24px}
-.svc-all{font-weight:500;color:#fff;text-decoration:underline 1px var(--color-green);text-underline-offset:3px}
-.svc-call{display:flex;align-items:center;gap:8px;color:var(--color-on-navy-muted)}
-.svc-call svg{width:18px;height:18px;color:var(--color-green);flex-shrink:0}
-.svc-call a{font-weight:600;color:#fff;text-decoration:none;white-space:nowrap}
-
-/* Phone and tablet: white sheet, 56px rows, plus and minus in a fixed slot */
-.sheet{background:var(--color-canvas);border-bottom:1px solid var(--color-line)}
-.sheet-rows{list-style:none;margin:0;padding:0}
-.sheet-rows>li{border-bottom:1px solid var(--color-line)}
-.sheet-row{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:56px;appearance:none;border:0;background:none;padding:0;font:500 15px/20px var(--font-body);letter-spacing:.04em;text-transform:uppercase;text-decoration:none;text-align:left;color:var(--color-ink);cursor:pointer}
-.sheet-row[aria-expanded=true]{color:var(--color-blue)}
-.pm{position:relative;width:24px;height:24px;flex-shrink:0}
-.pm::before,.pm::after{content:"";position:absolute;left:5px;top:11px;width:14px;height:2px;background:currentColor}
-.pm::after{transform:rotate(90deg)}
-[aria-expanded=true]>.pm::after{display:none}
-.sheet-sub{padding:0 0 10px 10px}
-.sheet-cat{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:44px;appearance:none;border:0;background:none;padding:0;font:400 16px/24px var(--font-body);text-align:left;color:var(--color-ink-soft);cursor:pointer}
-.sheet-cat[aria-expanded=true]{color:var(--color-blue);font-weight:500}
-.sheet .svc-items{padding:0 0 8px 10px}
-.sheet .svc-link{min-height:44px;font-size:16px;line-height:24px;color:var(--color-ink)}
-.sheet .svc-link::before{display:none}
-.sheet .svc-link.planned{color:var(--color-ink-muted)}
-.sheet .svc-link.planned i{border-color:var(--color-ink-muted)}
-.sheet .svc-all{display:flex;align-items:center;min-height:44px;color:var(--color-blue)}
-.sheet-actions{display:grid;gap:10px;padding-block:20px}
-.btn-l{display:flex;align-items:center;justify-content:center;gap:8px;height:52px;border-radius:var(--radius-full);font:600 16px/24px var(--font-display);letter-spacing:.02em;text-transform:uppercase;text-decoration:none}
-.btn-l svg{width:18px;height:18px}
-.btn-primary{background:var(--color-blue);color:#fff}
-.btn-secondary{border:1px solid var(--color-ink);color:var(--color-ink)}
-.sheet-addr{margin:0;text-align:center;font-size:14px;line-height:22px;color:var(--color-ink-muted)}
-
+.review{background:#F6F6F6;border-bottom:1px solid #E4E4E4;font-size:13px;line-height:16px;color:#6B6B6B}
+.review-inner{width:min(1200px,calc(100% - 48px));margin-inline:auto;display:flex;flex-wrap:wrap;gap:4px 18px;align-items:center;min-height:40px;padding-block:4px}
+.review strong{color:#181515;font-weight:600}
+.review label{display:inline-flex;gap:7px;align-items:center;min-height:32px;cursor:pointer;color:#181515;font-weight:500}
+.review input{width:16px;height:16px;margin:0;accent-color:#223D90}
+.review a{color:#223D90;font-weight:600}
 /* Hero: same as highlightschicago.com/services, for context */
-.hero{position:relative;overflow:hidden;padding:84px 0;background:var(--color-navy);color:#fff}
+.hero{position:relative;overflow:hidden;padding:84px 0;background:#15202A;color:#fff}
 .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(21,32,42,.95),rgba(21,32,42,.84) 40%,rgba(21,32,42,.42) 68%,rgba(21,32,42,.28))}
-.hero .hc-wrap{position:relative;z-index:1}
-.hero h1{font:500 clamp(42px,6vw,86px)/.96 var(--font-display);letter-spacing:-.055em;max-width:820px;margin:0 0 24px}
-.hero p{font-size:18px;line-height:30px;color:var(--color-on-navy-soft);max-width:690px;margin:0 0 30px}
+.hero-inner{position:relative;z-index:1;width:min(1200px,calc(100% - 48px));margin-inline:auto}
+.hero h1{font:500 clamp(42px,6vw,86px)/.96 "Space Grotesk",system-ui,sans-serif;letter-spacing:-.055em;max-width:820px;margin:0 0 24px}
+.hero p{font-size:18px;line-height:30px;color:#FFFFFFCC;max-width:690px;margin:0 0 30px}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px}
 .hero-actions a{padding:13px 24px;border:1px solid #fff;border-radius:28px;font-weight:700;line-height:24px;text-decoration:none;color:#fff}
-.hero-actions a:first-child{background:#fff;color:var(--color-blue)}
+.hero-actions a:first-child{background:#fff;color:#223D90}
+@media(max-width:768px){.hero{padding:56px 0}}
+@media(max-width:480px){.review-inner,.hero-inner{width:calc(100% - 32px)}}
+/* Site header: utility bar, main nav, Services and Brands menus, phone sheet.
+   Highlights Chicago Design System v3 (Paper, "09 · Navigation" and the brand service page header).
+   Every value is a design-system token; nothing here depends on the page's own stylesheet. */
+.sn{--sn-canvas:#FFFFFF;--sn-line:#E4E4E4;--sn-line-strong:#8F8F8F;--sn-ink:#181515;--sn-ink-soft:#454545;--sn-ink-muted:#6B6B6B;--sn-navy:#15202A;--sn-navy-line:#FFFFFF1A;--sn-on-navy-soft:#FFFFFFCC;--sn-on-navy-muted:#FFFFFF99;--sn-blue:#223D90;--sn-blue-deep:#182C69;--sn-green:#66B143;--sn-display:"Space Grotesk","Space Grotesk Fallback",system-ui,sans-serif;--sn-body:Inter,"Inter Fallback",system-ui,sans-serif;position:relative;z-index:40;font-family:var(--sn-body);-webkit-font-smoothing:antialiased}
+.sn *,.sn *::before,.sn *::after{box-sizing:border-box}
+.sn [hidden]{display:none!important}
+.sn :focus-visible{outline:3px solid color-mix(in srgb,var(--sn-blue) 45%,transparent);outline-offset:3px}
+.sn-wrap{width:min(1200px,calc(100% - 48px));margin-inline:auto}
+.sn-icon{flex-shrink:0;display:block}
 
-@media(max-width:1200px){.hc-nav-links{gap:18px}.hc-nav-phone{display:none}}
-@media(max-width:1100px){.hc-nav-links{gap:14px}.hc-nav-links>li>a{font-size:13px}.hc-nav-logo img{width:150px}.hc-utility-group:first-child span:not(:first-child),.hc-utility-group:first-child .hc-utility-divider{display:none}}
-@media(max-width:992px){.hc-nav-links,.hc-nav-cta{display:none}.hc-nav-burger{display:grid}}
-@media(min-width:993px){.sheet{display:none}}
-@media(max-width:768px){.hc-utility-inner{justify-content:center}.hc-utility-group:first-child{display:none}.hero{padding:56px 0}}
-@media(max-width:480px){.hc-wrap{width:calc(100% - 32px)}.hc-nav-inner{height:72px}.hc-nav-logo img{width:150px}.hc-utility-group:last-child .hc-utility-divider,.hc-utility-group:last-child a:first-child{display:none}}
-@media(prefers-reduced-motion:reduce){.svc-panel{animation:none}.svc-link,.svc-link span,.svc-link::before,.svc-chevron svg{transition:none}}
+/* Utility bar: navy, 44px, Inter 14, green icons */
+.sn-utility{background:var(--sn-navy);color:var(--sn-on-navy-soft)}
+.sn-utility-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:44px;font-size:14px;line-height:20px}
+.sn-utility-group{display:flex;align-items:center;gap:24px}
+.sn-utility a,.sn-utility span{display:inline-flex;align-items:center;gap:8px;color:inherit;text-decoration:none;white-space:nowrap}
+.sn-utility .sn-icon{color:var(--sn-green)}
+.sn-sep{width:1px;height:16px;background:var(--sn-navy-line)}
+.sn-utility .sn-utility-phone{font-weight:600;color:#fff}
+
+/* Main nav: white, 84px, 1px line under it */
+.sn-nav{position:relative;background:var(--sn-canvas);border-bottom:1px solid var(--sn-line)}
+.sn-nav-inner{position:relative;display:flex;align-items:center;justify-content:space-between;gap:24px;height:84px}
+.sn-logo{display:flex;align-items:center;flex-shrink:0}
+.sn-logo img{display:block;width:181px;height:auto}
+.sn-links{display:flex;align-items:center;gap:24px;margin:0;padding:0;list-style:none}
+.sn-links>li{display:flex;align-items:center}
+.sn-top{font:500 15px/20px var(--sn-body);letter-spacing:.04em;text-transform:uppercase;color:var(--sn-ink);text-decoration:none;white-space:nowrap;transition:color .3s ease}
+.sn-top:hover,.sn-top.is-current,.sn-has-menu.is-open>.sn-top{color:var(--sn-blue)}
+.sn-chevron{appearance:none;display:grid;place-items:center;width:22px;height:44px;margin-left:2px;padding:0;border:0;background:none;color:var(--sn-ink);cursor:pointer;transition:color .3s ease}
+.sn-chevron .sn-icon{transition:transform .3s ease}
+.sn-has-menu:hover>.sn-chevron,.sn-top.is-current+.sn-chevron,.sn-chevron[aria-expanded=true]{color:var(--sn-blue)}
+.sn-chevron[aria-expanded=true] .sn-icon{transform:rotate(180deg)}
+.sn-actions{display:flex;align-items:center;gap:20px;flex-shrink:0}
+.sn-phone{display:inline-flex;align-items:center;gap:8px;font:600 16px/24px var(--sn-display);letter-spacing:.02em;color:var(--sn-ink);text-decoration:none;white-space:nowrap}
+.sn-phone .sn-icon{color:var(--sn-blue)}
+.sn-cta{display:inline-flex;align-items:center;height:44px;padding-inline:24px;border-radius:999px;background:var(--sn-blue);font:600 15px/20px var(--sn-display);letter-spacing:.02em;text-transform:uppercase;color:#fff;text-decoration:none;white-space:nowrap;transition:background .3s ease}
+.sn-cta:hover{background:var(--sn-blue-deep)}
+.sn-burger{display:none;appearance:none;place-content:center;gap:4px;width:44px;height:44px;padding:0;border:1px solid var(--sn-line-strong);border-radius:999px;background:none;cursor:pointer}
+.sn-burger span{display:block;width:18px;height:2px;background:var(--sn-ink);transition:transform .3s ease,opacity .3s ease}
+.sn-burger[aria-expanded=true]{background:var(--sn-ink);border-color:var(--sn-ink)}
+.sn-burger[aria-expanded=true] span{background:#fff}
+.sn-burger[aria-expanded=true] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.sn-burger[aria-expanded=true] span:nth-child(2){opacity:0}
+.sn-burger[aria-expanded=true] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+/* Menu panel: navy, radius 4, no shadow, drops 20px into place */
+.sn-panel{position:absolute;top:100%;left:0;z-index:40;width:1000px;max-width:100%;max-height:calc(100vh - var(--sn-top,0px) - 16px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#FFFFFF66 transparent;background:var(--sn-navy);color:#fff;border:1px solid var(--sn-navy-line);border-radius:4px;animation:sn-drop .3s ease}
+@keyframes sn-drop{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:none}}
+.sn-cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 24px;padding:24px 30px 14px}
+.sn-col-head{margin:0 0 8px;padding-bottom:10px;border-bottom:1px solid var(--sn-navy-line);font:700 15px/20px var(--sn-body);letter-spacing:.08em;text-transform:uppercase;color:var(--sn-green)}
+.sn-items{margin:0;padding:0;list-style:none}
+.sn-link{position:relative;display:flex;align-items:center;min-height:28px;padding-block:4px;font-size:14px;line-height:20px;color:#fff;text-decoration:none;transition:color .3s ease}
+.sn-link>span{display:inline-block;transition:transform .3s ease}
+.sn-link::before{content:"";position:absolute;left:0;top:13px;width:16px;height:2px;background:var(--sn-green);opacity:0;transform:translateX(-10px);transition:transform .3s ease,opacity .3s ease}
+a.sn-link:hover,a.sn-link:focus-visible{color:var(--sn-green)}
+a.sn-link:hover::before,a.sn-link:focus-visible::before{opacity:1;transform:none}
+a.sn-link:hover>span,a.sn-link:focus-visible>span{transform:translateX(26px)}
+.sn-link--planned{color:var(--sn-on-navy-muted)}
+.sn-link--planned::before{display:none}
+.sn-link--planned i{flex-shrink:0;width:7px;height:7px;margin-left:8px;border:1.5px dashed currentColor;border-radius:50%}
+.sn[data-show-planned="0"] li[data-live="0"]{display:none}
+.sn-more{appearance:none;min-height:28px;margin-top:2px;padding:0;border:0;background:none;font:500 14px/20px var(--sn-body);color:var(--sn-green);text-decoration:underline 1px var(--sn-green);text-underline-offset:3px;cursor:pointer;transition:color .3s ease}
+.sn-more:hover{color:#fff}
+.sn-foot{position:sticky;bottom:0;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 16px;padding:12px 30px;background:var(--sn-navy);border-top:1px solid var(--sn-navy-line);font-size:16px;line-height:24px}
+.sn-all{font-weight:500;color:#fff;text-decoration:underline 1px var(--sn-green);text-underline-offset:3px}
+.sn-call{display:flex;align-items:center;gap:8px;color:var(--sn-on-navy-muted)}
+.sn-call .sn-icon{color:var(--sn-green)}
+.sn-call a{font-weight:600;color:#fff;text-decoration:none;white-space:nowrap}
+
+/* Phone and tablet sheet: white, 56px rows, plus and minus in a fixed 24px slot */
+.sn-sheet{position:relative;z-index:30;background:var(--sn-canvas);border-bottom:1px solid var(--sn-line);max-height:calc(100vh - 72px);overflow-y:auto}
+.sn-sheet-rows{margin:0;padding:0;list-style:none}
+.sn-sheet-rows>li{border-bottom:1px solid var(--sn-line)}
+.sn-sheet-row{appearance:none;display:flex;align-items:center;justify-content:space-between;width:100%;min-height:56px;padding:0;border:0;background:none;font:500 15px/20px var(--sn-body);letter-spacing:.04em;text-transform:uppercase;text-align:left;color:var(--sn-ink);text-decoration:none;cursor:pointer}
+.sn-sheet-row[aria-expanded=true]{color:var(--sn-blue)}
+.sn-pm{position:relative;width:24px;height:24px;flex-shrink:0}
+.sn-pm::before,.sn-pm::after{content:"";position:absolute;left:5px;top:11px;width:14px;height:2px;background:currentColor}
+.sn-pm::after{transform:rotate(90deg)}
+[aria-expanded=true]>.sn-pm::after{display:none}
+.sn-sheet-sub{padding:0 0 10px 10px}
+.sn-sheet-cat{appearance:none;display:flex;align-items:center;justify-content:space-between;width:100%;min-height:44px;padding:0;border:0;background:none;font:400 16px/24px var(--sn-body);text-align:left;color:var(--sn-ink-soft);cursor:pointer}
+.sn-sheet-cat[aria-expanded=true]{font-weight:500;color:var(--sn-blue)}
+.sn-sheet .sn-items{padding:0 0 8px 10px}
+.sn-sheet .sn-link{min-height:44px;font-size:16px;line-height:24px;color:var(--sn-ink)}
+.sn-sheet .sn-link::before{display:none}
+.sn-sheet .sn-link--planned{color:var(--sn-ink-muted)}
+.sn-sheet-all{display:flex;align-items:center;min-height:44px;font-weight:500;color:var(--sn-blue);text-decoration:underline 1px var(--sn-green);text-underline-offset:3px}
+.sn-sheet-actions{display:grid;gap:10px;padding-block:20px}
+.sn-btn{display:flex;align-items:center;justify-content:center;gap:8px;height:52px;border-radius:999px;font:600 16px/24px var(--sn-display);letter-spacing:.02em;text-transform:uppercase;text-decoration:none}
+.sn-btn--primary{background:var(--sn-blue);color:#fff}
+.sn-btn--secondary{border:1px solid var(--sn-ink);color:var(--sn-ink)}
+.sn-sheet-addr{margin:0;text-align:center;font-size:14px;line-height:22px;color:var(--sn-ink-muted)}
+
+/* Seven links fill the 1200 frame, so on desktop the phone number lives in the utility bar above
+   (white, 600) and the nav keeps the Contact us pill. Narrower desktops tighten the gaps. */
+@media (min-width:1101px){.sn-phone{display:none}}
+@media (max-width:1260px){.sn-links{gap:16px}.sn-top{font-size:14px}.sn-logo img{width:150px}.sn-utility-group:first-child>:not(:first-child){display:none}}
+
+/* Below 1100 (seven links no longer fit): menu sheet, a round call button first, then the menu button */
+@media (max-width:1100px){
+  .sn-links,.sn-cta{display:none}
+  .sn-phone{display:grid;place-items:center;width:44px;height:44px;border-radius:999px;background:var(--sn-blue)}
+  .sn-phone>span{display:none}
+  .sn-phone .sn-icon{color:#fff}
+  .sn-burger{display:grid}
+  .sn-actions{gap:10px}
+}
+@media (min-width:1101px){.sn-sheet{display:none!important}}
+@media (max-width:768px){.sn-utility-inner{justify-content:center}.sn-utility-group:first-child{display:none}}
+@media (max-width:480px){.sn-wrap{width:calc(100% - 32px)}.sn-nav-inner{height:72px}.sn-logo img{width:148px}.sn-utility-group:last-child>.sn-sep,.sn-utility-group:last-child>a:first-child{display:none}}
+@media (prefers-reduced-motion:reduce){.sn-panel{animation:none}.sn-link,.sn-link>span,.sn-link::before,.sn-chevron .sn-icon,.sn-burger span{transition:none}}
+
 </style>
 </head>
 <body>
-<div class="review"><div class="hc-wrap">
-  <span><strong id="nLive"></strong> live · <strong id="nPlanned"></strong> planned</span>
-  <label><input type="checkbox" id="showPlanned" checked> Show planned pages</label>
-  <span>Turn this off to see what visitors get today.</span>
+<div class="review"><div class="review-inner">
+<span>Services menu: <strong>37</strong> live · <strong>19</strong> planned. Brands menu: <strong>10</strong> written · <strong>21</strong> planned.</span>
+<label><input type="checkbox" checked onchange="window.snSetPlanned&&window.snSetPlanned(this.checked)"> Show planned pages</label>
+<span>Turn this off to see what visitors get. Same header as the <a href="https://logeshmaximus.github.io/highlights-chicago-brand-pages/brands/">brand pages preview</a>.</span>
 </div></div>
-<div class="hc-utility"><div class="hc-wrap hc-utility-inner">
-  <div class="hc-utility-group">
-    <a href="https://www.google.com/maps/place/Highlights+Chicago+Electrical+Services/@41.986143,-87.700781,15z"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.800 12 21 12 21z"/><circle cx="12" cy="9.500" r="2.500"/></svg>5766 N Lincoln Ave, Chicago, IL 60659, United States</a>
-    <span class="hc-utility-divider" aria-hidden="true"></span>
-    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Mon–Fri 08:00 AM – 05:00 PM</span>
-  </div>
-  <div class="hc-utility-group">
-    <a href="mailto:info@highlightschicago.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.500 6.500 12 13l8.500-6.500"/></svg>info@highlightschicago.com</a>
-    <span class="hc-utility-divider" aria-hidden="true"></span>
-    <a class="hc-utility-phone" href="tel:773-262-3333"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.500 1.500a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>773-262-3333</a>
-  </div>
+<div class="sn" data-show-planned="1">
+<div class="sn-utility" aria-label="Business contact information"><div class="sn-wrap sn-utility-inner">
+<div class="sn-utility-group"><a href="https://www.google.com/maps/search/?api=1&amp;query=Highlights+Chicago+Inc+5766+N+Lincoln+Ave+Chicago"><svg class="sn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>5766 N Lincoln Ave, Chicago, IL 60659, United States</a><span class="sn-sep" aria-hidden="true"></span><span><svg class="sn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Mon–Fri 08:00 AM – 05:00 PM</span></div>
+<div class="sn-utility-group"><a href="mailto:info@highlightschicago.com"><svg class="sn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg>info@highlightschicago.com</a><span class="sn-sep" aria-hidden="true"></span><a class="sn-utility-phone" href="tel:+17732623333"><svg class="sn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>773-262-3333</a></div>
 </div></div>
-<header class="hc-nav">
-  <div class="hc-wrap hc-nav-inner" id="bar">
-    <a class="hc-nav-logo" href="https://www.highlightschicago.com/" aria-label="Highlights Chicago home"><img src="https://cdn.prod.website-files.com/69f58d69563c4c5bf9b01c60/6a3c3c20491b43b0858c1876_highlights-chicago-logo.webp" alt="Highlights Chicago"></a>
-    <ul class="hc-nav-links">
-      <li><a href="https://www.highlightschicago.com/">Home</a></li>
-      <li><a href="https://www.highlightschicago.com/about-us">About Us</a></li>
-      <li id="svcLi">
-        <a href="https://www.highlightschicago.com/services" aria-current="page">Services</a>
-        <button class="svc-chevron" id="svcBtn" aria-expanded="false" aria-controls="svcPanel" aria-label="Show services menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <div class="svc-panel" id="svcPanel" hidden>
-          <div class="svc-cols" id="svcCols"></div>
-          <div class="svc-foot">
-            <a class="svc-all" href="https://www.highlightschicago.com/services">View all services →</a>
-            <span class="svc-call">Not sure what you need? <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.500 1.500a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg><a href="tel:773-262-3333">(773) 262-3333</a></span>
-          </div>
-        </div>
-      </li>
-      <li><a href="https://www.highlightschicago.com/service-areas">Service Areas</a></li>
-      <li><a href="https://www.highlightschicago.com/blog">Blog</a></li>
-      <li><a href="https://www.highlightschicago.com/learning-center">Learning Center</a></li>
-    </ul>
-    <div class="hc-nav-actions">
-      <a class="hc-nav-phone" href="tel:773-262-3333"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.500 1.500a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>(773) 262-3333</a>
-      <a class="hc-nav-cta" href="https://www.highlightschicago.com/contact-us">Contact us</a>
-      <button class="hc-nav-burger" id="burger" aria-expanded="false" aria-controls="sheet" aria-label="Open navigation menu"><span></span><span></span><span></span></button>
-    </div>
-  </div>
-</header>
-<div class="sheet" id="sheet" hidden><div class="hc-wrap" id="sheetInner"></div></div>
+<header class="sn-nav"><div class="sn-wrap sn-nav-inner">
+<a class="sn-logo" href="https://www.highlightschicago.com/" aria-label="Highlights Chicago home"><img src="https://cdn.prod.website-files.com/69f58d69563c4c5bf9b01c60/6a3c3c20491b43b0858c1876_highlights-chicago-logo.webp" alt="Highlights Chicago Electrical Services" width="181" height="44"></a>
+<nav aria-label="Primary navigation"><ul class="sn-links">
+<li><a class="sn-top" href="https://www.highlightschicago.com/">Home</a></li>
+<li><a class="sn-top" href="https://www.highlightschicago.com/about-us">About Us</a></li>
+<li class="sn-has-menu" data-menu="services">
+<a class="sn-top is-current" href="https://www.highlightschicago.com/services" aria-current="page">Services</a><button type="button" class="sn-chevron" aria-expanded="false" aria-controls="sn-panel-services" aria-label="Show services menu"><svg class="sn-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></button>
+<div class="sn-panel" id="sn-panel-services" hidden>
+<div class="sn-cols"><div class="sn-col"><p class="sn-col-head">Electrical</p><ul class="sn-items"><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-wiring/electrical-repair"><span>Electrical Repair</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-outlets/gfci-outlet-installation"><span>GFCI Outlets</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/circuit-protection/circuit-breaker-replacement"><span>Circuit Breaker Replacement</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/panel-upgrades/electrical-panel-upgrade"><span>Panel Upgrade</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/circuit-protection/whole-house-surge-protector"><span>Whole-House Surge Protector</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-outlets/outlet-replacement-near-me"><span>Outlet Repair &amp; Replacement</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/life-safety/fire-alarm-installation"><span>Fire Alarm Systems</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/circuit-protection/electrical-panel-replacement-near-me"><span>Panel Replacement</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-wiring/electrical-troubleshooting"><span>Electrical Troubleshooting</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/life-safety/smoke-detector-installation-and-wiring"><span>Smoke Detectors</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-wiring/electrical-inspection-near-me"><span>Electrical Safety Inspection</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-outlets/electrical-outlet-installation"><span>Outlet Installation</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/circuit-protection/breaker-box-and-panel-repair"><span>Panel Repair &amp; Maintenance</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/panel-upgrades/electrical-panel-installation-near-me"><span>Panel Installation</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/life-safety/carbon-monoxide-detector-installation"><span>Carbon Monoxide Detectors</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-wiring/whole-house-rewiring-near-me"><span>Whole-House Rewiring</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-wiring/electrical-wiring-and-repair-services"><span>Wiring Repair</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/circuit-protection/grounding-and-bonding"><span>Grounding &amp; Bonding</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/panel-upgrades/electrical-service-upgrade-near-me"><span>100 to 200 Amp Service Upgrade</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-outlets/light-switch-replacement-and-installation"><span>Light Switches</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-wiring/new-construction-electrician-near-me"><span>New Construction Wiring</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/solar-energy/infrared-electrical-inspection"><span>Infrared / Thermal Inspection</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-outlets/dimmer-switch-installation-and-replacement"><span>Dimmer Switches</span></a></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>New &amp; Dedicated Circuits</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Garage Wiring</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Electrical Permits</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Code Violation Correction</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Smart Switches &amp; Motion Sensors</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Remodel Wiring</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Junction Boxes</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Electric Meter &amp; Meter Socket</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Furnace &amp; AC Electrical</span><i aria-hidden="true"></i></span></li></ul><button type="button" class="sn-more" hidden></button></div><div class="sn-col"><p class="sn-col-head">EV Charging</p><ul class="sn-items"><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/ev-charging/tesla-and-ev-charger-installation"><span>Home &amp; Tesla Charger Installation</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/ev-charging/commercial-ev-charger-installation-near-me"><span>Commercial &amp; Multi-Unit EV Charging</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/ev-charging/ev-charger-repair-near-me"><span>EV Charger Repair &amp; Maintenance</span></a></li></ul><button type="button" class="sn-more" hidden></button></div><div class="sn-col"><p class="sn-col-head">Lighting</p><ul class="sn-items"><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/outdoor-lighting/outdoor-lighting-installation"><span>Outdoor &amp; Security Lighting</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/interior-lighting/recessed-lighting-installation"><span>Recessed Lighting</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/outdoor-lighting/landscape-lighting-installation"><span>Landscape Lighting</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/interior-lighting/light-fixture-installation-and-replacement"><span>Light Fixtures</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/interior-lighting/chandelier-installation"><span>Chandeliers</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/interior-lighting/led-retrofit"><span>LED Retrofit &amp; Upgrades</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/interior-lighting/under-cabinet-lighting-installation-near-me"><span>Under-Cabinet Lighting</span></a></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Smart Lighting &amp; Controls</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Track Lighting</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Pendant Lighting</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Wall Sconces</span><i aria-hidden="true"></i></span></li></ul><button type="button" class="sn-more" hidden></button></div><div class="sn-col"><p class="sn-col-head">Commercial</p><ul class="sn-items"><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/outdoor-lighting/commercial-lighting-installation-near-me"><span>Commercial Lighting</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-wiring/electrical-maintenance-services-near-me"><span>Facility Electrical Maintenance</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/outdoor-lighting/parking-lot-lighting-repair-and-installation"><span>Parking Lot &amp; Garage Lighting</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/outdoor-lighting/emergency-lighting-services-and-maintenance"><span>Emergency Lighting</span></a></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Exit Signs &amp; Egress Lighting</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Warehouse &amp; High-Bay Lighting</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Industrial Machinery &amp; Motor Controls</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Sign &amp; Storefront Lighting</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Restaurant &amp; Kitchen Wiring</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Tenant Build-Out &amp; Office Electrical</span><i aria-hidden="true"></i></span></li></ul><button type="button" class="sn-more" hidden></button></div></div>
+<div class="sn-foot"><a class="sn-all" href="https://www.highlightschicago.com/services">View all services →</a><span class="sn-call">Not sure what you need? <svg class="sn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><a href="tel:+17732623333">(773) 262-3333</a></span></div>
+</div>
+</li>
+<li class="sn-has-menu" data-menu="brands">
+<a class="sn-top" href="https://logeshmaximus.github.io/highlights-chicago-brand-pages/brands/">Brands</a><button type="button" class="sn-chevron" aria-expanded="false" aria-controls="sn-panel-brands" aria-label="Show brands menu"><svg class="sn-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></button>
+<div class="sn-panel" id="sn-panel-brands" hidden>
+<div class="sn-cols"><div class="sn-col"><p class="sn-col-head">Generators</p><ul class="sn-items"><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/brands/generac/generac-generator-installation-repair"><span>Generac</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/brands/kohler/kohler-generator-installation-repair"><span>Kohler</span></a></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Cummins</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Westinghouse</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Champion</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Cat</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Briggs &amp; Stratton</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Firman</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Honeywell</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>DuroMax</span><i aria-hidden="true"></i></span></li></ul><button type="button" class="sn-more" hidden></button></div><div class="sn-col"><p class="sn-col-head">EV Chargers</p><ul class="sn-items"><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/brands/tesla/tesla-ev-charger-installation-repair"><span>Tesla</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/brands/chargepoint/chargepoint-ev-charger-installation-repair"><span>ChargePoint</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/brands/ford/ford-ev-charger-installation-repair"><span>Ford</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/brands/enphase/enphase-ev-charger-installation-repair"><span>Enphase</span></a></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Rivian</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Wallbox</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Emporia</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Autel</span><i aria-hidden="true"></i></span></li></ul><button type="button" class="sn-more" hidden></button></div><div class="sn-col"><p class="sn-col-head">Doorbells &amp; Cameras</p><ul class="sn-items"><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/brands/ring/ring-video-doorbell-installation-repair"><span>Ring</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/brands/nest/nest-video-doorbell-installation-repair"><span>Nest</span></a></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Blink</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Arlo</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Eufy</span><i aria-hidden="true"></i></span></li></ul><button type="button" class="sn-more" hidden></button></div><div class="sn-col"><p class="sn-col-head">Solar &amp; Batteries</p><ul class="sn-items"><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/brands/tesla/tesla-home-battery-installation-repair"><span>Tesla home battery</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/brands/tesla/tesla-solar-panels-installation-repair"><span>Tesla solar panels</span></a></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>EcoFlow home backup</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>SunPower solar panels</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Enphase solar panels</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Enphase home battery</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>SolarEdge solar panels</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Generac home battery</span><i aria-hidden="true"></i></span></li></ul><button type="button" class="sn-more" hidden></button></div></div>
+<div class="sn-foot"><a class="sn-all" href="https://logeshmaximus.github.io/highlights-chicago-brand-pages/brands/">View all brands →</a><span class="sn-call">Not sure what you need? <svg class="sn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><a href="tel:+17732623333">(773) 262-3333</a></span></div>
+</div>
+</li>
+<li><a class="sn-top" href="https://www.highlightschicago.com/service-areas">Service Areas</a></li>
+<li><a class="sn-top" href="https://www.highlightschicago.com/blog">Blog</a></li>
+<li><a class="sn-top" href="https://www.highlightschicago.com/learning-center">Learning Center</a></li>
+</ul></nav>
+<div class="sn-actions"><a class="sn-phone" href="tel:+17732623333" aria-label="Call (773) 262-3333"><svg class="sn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><span>(773) 262-3333</span></a><a class="sn-cta" href="https://www.highlightschicago.com/contact-us">Contact us</a>
+<button type="button" class="sn-burger" aria-expanded="false" aria-controls="sn-sheet" aria-label="Open navigation menu"><span></span><span></span><span></span></button></div>
+</div></header>
+<div class="sn-sheet" id="sn-sheet" hidden><div class="sn-wrap">
+<ul class="sn-sheet-rows">
+<li><a class="sn-sheet-row" href="https://www.highlightschicago.com/">Home</a></li>
+<li><a class="sn-sheet-row" href="https://www.highlightschicago.com/about-us">About Us</a></li>
+<li><button type="button" class="sn-sheet-row" aria-expanded="false" aria-controls="sn-sheet-services">Services<span class="sn-pm" aria-hidden="true"></span></button>
+<div class="sn-sheet-sub" id="sn-sheet-services" hidden>
+<button type="button" class="sn-sheet-cat" aria-expanded="false" aria-controls="sn-sheet-services-0">Electrical<span class="sn-pm" aria-hidden="true"></span></button><ul class="sn-items" id="sn-sheet-services-0" hidden><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-wiring/electrical-repair"><span>Electrical Repair</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-outlets/gfci-outlet-installation"><span>GFCI Outlets</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/circuit-protection/circuit-breaker-replacement"><span>Circuit Breaker Replacement</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/panel-upgrades/electrical-panel-upgrade"><span>Panel Upgrade</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/circuit-protection/whole-house-surge-protector"><span>Whole-House Surge Protector</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-outlets/outlet-replacement-near-me"><span>Outlet Repair &amp; Replacement</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/life-safety/fire-alarm-installation"><span>Fire Alarm Systems</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/circuit-protection/electrical-panel-replacement-near-me"><span>Panel Replacement</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-wiring/electrical-troubleshooting"><span>Electrical Troubleshooting</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/life-safety/smoke-detector-installation-and-wiring"><span>Smoke Detectors</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-wiring/electrical-inspection-near-me"><span>Electrical Safety Inspection</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-outlets/electrical-outlet-installation"><span>Outlet Installation</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/circuit-protection/breaker-box-and-panel-repair"><span>Panel Repair &amp; Maintenance</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/panel-upgrades/electrical-panel-installation-near-me"><span>Panel Installation</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/life-safety/carbon-monoxide-detector-installation"><span>Carbon Monoxide Detectors</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-wiring/whole-house-rewiring-near-me"><span>Whole-House Rewiring</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-wiring/electrical-wiring-and-repair-services"><span>Wiring Repair</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/circuit-protection/grounding-and-bonding"><span>Grounding &amp; Bonding</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/panel-upgrades/electrical-service-upgrade-near-me"><span>100 to 200 Amp Service Upgrade</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-outlets/light-switch-replacement-and-installation"><span>Light Switches</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-wiring/new-construction-electrician-near-me"><span>New Construction Wiring</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/solar-energy/infrared-electrical-inspection"><span>Infrared / Thermal Inspection</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-outlets/dimmer-switch-installation-and-replacement"><span>Dimmer Switches</span></a></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>New &amp; Dedicated Circuits</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Garage Wiring</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Electrical Permits</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Code Violation Correction</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Smart Switches &amp; Motion Sensors</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Remodel Wiring</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Junction Boxes</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Electric Meter &amp; Meter Socket</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Furnace &amp; AC Electrical</span><i aria-hidden="true"></i></span></li></ul>
+<button type="button" class="sn-sheet-cat" aria-expanded="false" aria-controls="sn-sheet-services-1">EV Charging<span class="sn-pm" aria-hidden="true"></span></button><ul class="sn-items" id="sn-sheet-services-1" hidden><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/ev-charging/tesla-and-ev-charger-installation"><span>Home &amp; Tesla Charger Installation</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/ev-charging/commercial-ev-charger-installation-near-me"><span>Commercial &amp; Multi-Unit EV Charging</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/ev-charging/ev-charger-repair-near-me"><span>EV Charger Repair &amp; Maintenance</span></a></li></ul>
+<button type="button" class="sn-sheet-cat" aria-expanded="false" aria-controls="sn-sheet-services-2">Lighting<span class="sn-pm" aria-hidden="true"></span></button><ul class="sn-items" id="sn-sheet-services-2" hidden><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/outdoor-lighting/outdoor-lighting-installation"><span>Outdoor &amp; Security Lighting</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/interior-lighting/recessed-lighting-installation"><span>Recessed Lighting</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/outdoor-lighting/landscape-lighting-installation"><span>Landscape Lighting</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/interior-lighting/light-fixture-installation-and-replacement"><span>Light Fixtures</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/interior-lighting/chandelier-installation"><span>Chandeliers</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/interior-lighting/led-retrofit"><span>LED Retrofit &amp; Upgrades</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/interior-lighting/under-cabinet-lighting-installation-near-me"><span>Under-Cabinet Lighting</span></a></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Smart Lighting &amp; Controls</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Track Lighting</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Pendant Lighting</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Wall Sconces</span><i aria-hidden="true"></i></span></li></ul>
+<button type="button" class="sn-sheet-cat" aria-expanded="false" aria-controls="sn-sheet-services-3">Commercial<span class="sn-pm" aria-hidden="true"></span></button><ul class="sn-items" id="sn-sheet-services-3" hidden><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/outdoor-lighting/commercial-lighting-installation-near-me"><span>Commercial Lighting</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/electrical-wiring/electrical-maintenance-services-near-me"><span>Facility Electrical Maintenance</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/outdoor-lighting/parking-lot-lighting-repair-and-installation"><span>Parking Lot &amp; Garage Lighting</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/outdoor-lighting/emergency-lighting-services-and-maintenance"><span>Emergency Lighting</span></a></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Exit Signs &amp; Egress Lighting</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Warehouse &amp; High-Bay Lighting</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Industrial Machinery &amp; Motor Controls</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Sign &amp; Storefront Lighting</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Restaurant &amp; Kitchen Wiring</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Tenant Build-Out &amp; Office Electrical</span><i aria-hidden="true"></i></span></li></ul>
+<a class="sn-sheet-all" href="https://www.highlightschicago.com/services">View all services →</a>
+</div></li>
+<li><button type="button" class="sn-sheet-row" aria-expanded="false" aria-controls="sn-sheet-brands">Brands<span class="sn-pm" aria-hidden="true"></span></button>
+<div class="sn-sheet-sub" id="sn-sheet-brands" hidden>
+<button type="button" class="sn-sheet-cat" aria-expanded="false" aria-controls="sn-sheet-brands-0">Generators<span class="sn-pm" aria-hidden="true"></span></button><ul class="sn-items" id="sn-sheet-brands-0" hidden><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/brands/generac/generac-generator-installation-repair"><span>Generac</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/brands/kohler/kohler-generator-installation-repair"><span>Kohler</span></a></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Cummins</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Westinghouse</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Champion</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Cat</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Briggs &amp; Stratton</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Firman</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Honeywell</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>DuroMax</span><i aria-hidden="true"></i></span></li></ul>
+<button type="button" class="sn-sheet-cat" aria-expanded="false" aria-controls="sn-sheet-brands-1">EV Chargers<span class="sn-pm" aria-hidden="true"></span></button><ul class="sn-items" id="sn-sheet-brands-1" hidden><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/brands/tesla/tesla-ev-charger-installation-repair"><span>Tesla</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/brands/chargepoint/chargepoint-ev-charger-installation-repair"><span>ChargePoint</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/brands/ford/ford-ev-charger-installation-repair"><span>Ford</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/brands/enphase/enphase-ev-charger-installation-repair"><span>Enphase</span></a></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Rivian</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Wallbox</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Emporia</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Autel</span><i aria-hidden="true"></i></span></li></ul>
+<button type="button" class="sn-sheet-cat" aria-expanded="false" aria-controls="sn-sheet-brands-2">Doorbells &amp; Cameras<span class="sn-pm" aria-hidden="true"></span></button><ul class="sn-items" id="sn-sheet-brands-2" hidden><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/brands/ring/ring-video-doorbell-installation-repair"><span>Ring</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/brands/nest/nest-video-doorbell-installation-repair"><span>Nest</span></a></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Blink</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Arlo</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Eufy</span><i aria-hidden="true"></i></span></li></ul>
+<button type="button" class="sn-sheet-cat" aria-expanded="false" aria-controls="sn-sheet-brands-3">Solar &amp; Batteries<span class="sn-pm" aria-hidden="true"></span></button><ul class="sn-items" id="sn-sheet-brands-3" hidden><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/brands/tesla/tesla-home-battery-installation-repair"><span>Tesla home battery</span></a></li><li data-live="1"><a class="sn-link" href="https://www.highlightschicago.com/services/brands/tesla/tesla-solar-panels-installation-repair"><span>Tesla solar panels</span></a></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>EcoFlow home backup</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>SunPower solar panels</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Enphase solar panels</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Enphase home battery</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>SolarEdge solar panels</span><i aria-hidden="true"></i></span></li><li data-live="0"><span class="sn-link sn-link--planned" title="Planned page, not published yet"><span>Generac home battery</span><i aria-hidden="true"></i></span></li></ul>
+<a class="sn-sheet-all" href="https://logeshmaximus.github.io/highlights-chicago-brand-pages/brands/">View all brands →</a>
+</div></li>
+<li><a class="sn-sheet-row" href="https://www.highlightschicago.com/service-areas">Service Areas</a></li>
+<li><a class="sn-sheet-row" href="https://www.highlightschicago.com/blog">Blog</a></li>
+<li><a class="sn-sheet-row" href="https://www.highlightschicago.com/learning-center">Learning Center</a></li>
+</ul>
+<div class="sn-sheet-actions"><a class="sn-btn sn-btn--primary" href="https://www.highlightschicago.com/contact-us">Contact us</a><a class="sn-btn sn-btn--secondary" href="tel:+17732623333"><svg class="sn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>Call (773) 262-3333</a><p class="sn-sheet-addr">5766 N Lincoln Ave, Chicago, IL 60659</p></div>
+</div></div>
+</div>
 <section class="hero">
-  <img src="https://www.highlightschicago.com/services/images/services/electrical-panel-upgrade.jpg" alt="">
-  <div class="hc-wrap">
-    <h1>Electrical services built around Chicago</h1>
-    <p>Explore service-specific guidance for safer installations, dependable repairs, and code-conscious electrical work across Chicago homes and businesses.</p>
-    <div class="hero-actions"><a href="https://www.highlightschicago.com/services#service-directory-title">Explore services</a><a href="https://www.highlightschicago.com/contact-us">Contact us</a></div>
-  </div>
+<img src="https://www.highlightschicago.com/services/images/services/electrical-panel-upgrade.jpg" alt="">
+<div class="hero-inner">
+<h1>Electrical services built around Chicago</h1>
+<p>Explore service-specific guidance for safer installations, dependable repairs, and code-conscious electrical work across Chicago homes and businesses.</p>
+<div class="hero-actions"><a href="https://www.highlightschicago.com/services#service-directory-title">Explore services</a><a href="https://www.highlightschicago.com/contact-us">Contact us</a></div>
+</div>
 </section>
 <script>
-// [name, path under /services/ (live) or planned slug, live?]. When a page goes live: set the third value to 1 and use its full path.
-const TABS = [{"name": "Electrical", "items": [["Electrical Repair", "electrical-wiring/electrical-repair", 1], ["GFCI Outlets", "electrical-outlets/gfci-outlet-installation", 1], ["Circuit Breaker Replacement", "circuit-protection/circuit-breaker-replacement", 1], ["Panel Upgrade", "panel-upgrades/electrical-panel-upgrade", 1], ["Whole-House Surge Protector", "circuit-protection/whole-house-surge-protector", 1], ["Outlet Repair & Replacement", "outlet-replacement-near-me", 0], ["Fire Alarm Systems", "life-safety/fire-alarm-installation", 1], ["Panel Replacement", "electrical-panel-replacement-near-me", 0], ["Electrical Troubleshooting", "electrical-wiring/electrical-troubleshooting", 1], ["Smoke Detectors", "life-safety/smoke-detector-installation-and-wiring", 1], ["Electrical Safety Inspection", "electrical-inspection-near-me", 0], ["Outlet Installation", "electrical-outlets/electrical-outlet-installation", 1], ["Panel Repair & Maintenance", "circuit-protection/breaker-box-and-panel-repair", 1], ["Panel Installation", "electrical-panel-installation-near-me", 0], ["Carbon Monoxide Detectors", "life-safety/carbon-monoxide-detector-installation", 1], ["Whole-House Rewiring", "whole-house-rewiring-near-me", 0], ["Wiring Repair", "electrical-wiring/electrical-wiring-and-repair-services", 1], ["Grounding & Bonding", "circuit-protection/grounding-and-bonding", 1], ["100 to 200 Amp Service Upgrade", "electrical-service-upgrade-near-me", 0], ["Light Switches", "electrical-outlets/light-switch-replacement-and-installation", 1], ["New Construction Wiring", "new-construction-electrician-near-me", 0], ["Infrared / Thermal Inspection", "solar-energy/infrared-electrical-inspection", 1], ["Dimmer Switches", "electrical-outlets/dimmer-switch-installation-and-replacement", 1], ["New & Dedicated Circuits", "dedicated-circuit-installation-near-me", 0], ["Garage Wiring", "garage-wiring-near-me", 0], ["Electrical Permits", "electrical-permits-near-me", 0], ["Code Violation Correction", "electrical-code-compliance-near-me", 0], ["Smart Switches & Motion Sensors", "smart-switch-installation-near-me", 0], ["Remodel Wiring", "remodel-electrical-wiring-near-me", 0], ["Junction Boxes", "junction-box-installation-near-me", 0], ["Electric Meter & Meter Socket", "meter-socket-replacement-near-me", 0], ["Furnace & AC Electrical", "furnace-and-ac-electrical-near-me", 0]]}, {"name": "EV Charging", "items": [["Home & Tesla Charger Installation", "ev-charging/tesla-and-ev-charger-installation", 1], ["Commercial & Multi-Unit EV Charging", "commercial-ev-charger-installation-near-me", 0], ["EV Charger Repair & Maintenance", "ev-charger-repair-near-me", 0]]}, {"name": "Lighting", "items": [["Outdoor & Security Lighting", "outdoor-lighting/outdoor-lighting-installation", 1], ["Recessed Lighting", "interior-lighting/recessed-lighting-installation", 1], ["Landscape Lighting", "outdoor-lighting/landscape-lighting-installation", 1], ["Light Fixtures", "interior-lighting/light-fixture-installation-and-replacement", 1], ["Chandeliers", "interior-lighting/chandelier-installation", 1], ["LED Retrofit & Upgrades", "interior-lighting/led-retrofit", 1], ["Under-Cabinet Lighting", "under-cabinet-lighting-installation-near-me", 0], ["Smart Lighting & Controls", "smart-lighting-installation-near-me", 0], ["Track Lighting", "track-lighting-installation-near-me", 0], ["Pendant Lighting", "pendant-light-installation-near-me", 0], ["Wall Sconces", "wall-sconce-installation-near-me", 0]]}, {"name": "Commercial", "items": [["Commercial Lighting", "commercial-lighting-installation-near-me", 0], ["Facility Electrical Maintenance", "electrical-maintenance-services-near-me", 0], ["Parking Lot & Garage Lighting", "outdoor-lighting/parking-lot-lighting-repair-and-installation", 1], ["Emergency Lighting", "outdoor-lighting/emergency-lighting-services-and-maintenance", 1], ["Exit Signs & Egress Lighting", "exit-sign-installation-near-me", 0], ["Warehouse & High-Bay Lighting", "warehouse-lighting-installation-near-me", 0], ["Industrial Machinery & Motor Controls", "industrial-machinery-wiring-near-me", 0], ["Sign & Storefront Lighting", "sign-lighting-installation-near-me", 0], ["Restaurant & Kitchen Wiring", "restaurant-electrician-near-me", 0], ["Tenant Build-Out & Office Electrical", "office-electrical-installation-near-me", 0]]}];
-const BASE = "https://www.highlightschicago.com/services/";
-// Set to false on the live site: planned pages have no URL yet and would 404.
-let showPlanned = true;
-// Each column shows its top pages by search volume; the rest open in place.
-const CAP = 8;
-const expanded = {};
-let hoverT = null;
-const $ = id => document.getElementById(id);
-const esc = s => s.replace(/&/g, "&amp;");
-const visible = () => TABS.map(t => ({ name: t.name, items: t.items.filter(i => showPlanned || i[2]) })).filter(t => t.items.length);
-// Planned pages render as plain text, so nobody can click through to a 404.
-const itemHTML = ([n, p, live]) => `<li>${live ? `<a class="svc-link" href="${BASE + p}"><span>${esc(n)}</span></a>` : `<div class="svc-link planned" title="Planned page, not published yet"><span>${esc(n)}</span><i aria-hidden="true"></i></div>`}</li>`;
+// Site header behaviour: Services and Brands menus, "View more" per column, planned-page toggle, phone sheet.
+(() => {
+  const root = document.querySelector('.sn');
+  if (!root) return;
+  const CAP = 8; // a column shows its first 8 pages; the rest open in place
+  const bar = root.querySelector('.sn-nav-inner');
+  const menus = [...root.querySelectorAll('.sn-has-menu')];
+  const hover = matchMedia('(hover: hover)').matches;
+  let hoverT = null;
 
-function renderCols() {
-  $("svcCols").innerHTML = visible().map(t => {
-    const open = expanded[t.name];
-    const shown = open ? t.items : t.items.slice(0, CAP);
-    const extra = t.items.length - CAP;
-    const more = extra > 0 ? `<button class="svc-more" data-col="${esc(t.name)}" aria-expanded="${!!open}">${open ? "Show less" : `View ${extra} more`}</button>` : "";
-    return `<div class="svc-col"><p class="svc-head">${esc(t.name)}</p><ul class="svc-items">${shown.map(itemHTML).join("")}</ul>${more}</div>`;
-  }).join("");
-}
-function renderSheet() {
-  const tabs = visible();
-  const rows = [["Home", "/"], ["About Us", "/about-us"], null, ["Service Areas", "/service-areas"], ["Blog", "/blog"], ["Learning Center", "/learning-center"]];
-  const services = `<li><button class="sheet-row" id="sheetSvc" aria-expanded="true" aria-controls="sheetSub">Services<span class="pm" aria-hidden="true"></span></button>
-    <div class="sheet-sub" id="sheetSub">${tabs.map((t, i) => `<button class="sheet-cat" data-cat="${i}" aria-expanded="false">${esc(t.name)}<span class="pm" aria-hidden="true"></span></button><ul class="svc-items" id="sheetCat${i}" hidden>${t.items.map(itemHTML).join("")}</ul>`).join("")}<a class="svc-all" href="https://www.highlightschicago.com/services">View all services →</a></div></li>`;
-  $("sheetInner").innerHTML = `<ul class="sheet-rows">${rows.map(r => r ? `<li><a class="sheet-row" href="https://www.highlightschicago.com${r[1]}">${r[0]}</a></li>` : services).join("")}</ul>
-    <div class="sheet-actions"><a class="btn-l btn-primary" href="https://www.highlightschicago.com/contact-us">Contact us</a><a class="btn-l btn-secondary" href="tel:773-262-3333"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.500 1.500a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>Call (773) 262-3333</a><p class="sheet-addr">5766 N Lincoln Ave, Chicago, IL 60659</p></div>`;
-}
-function render() {
-  renderCols();
-  renderSheet();
-  const all = TABS.flatMap(t => t.items);
-  $("nLive").textContent = all.filter(i => i[2]).length;
-  $("nPlanned").textContent = all.filter(i => !i[2]).length;
-}
-function place() {
-  const p = $("svcPanel"), bar = $("bar"), r = bar.getBoundingClientRect();
-  const left = $("svcLi").getBoundingClientRect().left - r.left;
-  p.style.left = Math.max(0, Math.min(left - 31, bar.clientWidth - p.offsetWidth)) + "px";
-  p.style.setProperty("--svc-top", r.bottom + "px");
-}
-function setOpen(on) {
-  $("svcPanel").hidden = !on;
-  $("svcBtn").setAttribute("aria-expanded", on);
-  $("svcBtn").setAttribute("aria-label", on ? "Hide services menu" : "Show services menu");
-  if (on) place();
-}
-const isOpen = () => !$("svcPanel").hidden;
-$("svcBtn").addEventListener("click", e => { e.stopPropagation(); clearTimeout(hoverT); setOpen(!isOpen()); });
-if (matchMedia("(hover: hover)").matches) {
-  $("svcLi").addEventListener("pointerenter", () => { clearTimeout(hoverT); hoverT = setTimeout(() => setOpen(true), 70); });
-  $("svcLi").addEventListener("pointerleave", () => { clearTimeout(hoverT); hoverT = setTimeout(() => setOpen(false), 240); });
-}
-$("svcCols").addEventListener("click", e => {
-  const b = e.target.closest(".svc-more"); if (!b) return;
-  const name = b.closest(".svc-col").querySelector(".svc-head").textContent;
-  expanded[name] = !expanded[name];
-  renderCols();
-  [...document.querySelectorAll(".svc-more")].find(x => x.closest(".svc-col").querySelector(".svc-head").textContent === name)?.focus();
-});
-$("svcPanel").addEventListener("click", e => e.stopPropagation());
-document.addEventListener("click", () => isOpen() && setOpen(false));
-document.addEventListener("keydown", e => { if (e.key === "Escape" && isOpen()) { setOpen(false); $("svcBtn").focus(); } });
-addEventListener("resize", () => isOpen() && place());
-$("showPlanned").addEventListener("change", e => { showPlanned = e.target.checked; render(); });
-document.querySelector(".review").addEventListener("click", e => e.stopPropagation());
-$("burger").addEventListener("click", () => {
-  const d = $("sheet"); d.hidden = !d.hidden;
-  $("burger").setAttribute("aria-expanded", !d.hidden);
-  $("burger").setAttribute("aria-label", d.hidden ? "Open navigation menu" : "Close navigation menu");
-});
-$("sheet").addEventListener("click", e => {
-  const svc = e.target.closest("#sheetSvc");
-  if (svc) {
-    const open = svc.getAttribute("aria-expanded") === "true";
-    svc.setAttribute("aria-expanded", !open);
-    $("sheetSub").hidden = open;
-    return;
+  const showPlanned = () => root.dataset.showPlanned !== '0';
+
+  // Desktop columns: hide planned pages when the toggle is off, then cap what is left.
+  function layoutColumn(col) {
+    const items = [...col.querySelectorAll('.sn-items > li')];
+    const visible = items.filter((li) => showPlanned() || li.dataset.live === '1');
+    const open = col.dataset.open === '1';
+    items.forEach((li) => { li.hidden = !visible.includes(li) || (!open && visible.indexOf(li) >= CAP); });
+    const extra = visible.length - CAP;
+    const more = col.querySelector('.sn-more');
+    more.hidden = extra <= 0;
+    more.textContent = open ? 'Show less' : `View ${extra} more`;
+    more.setAttribute('aria-expanded', String(open));
+    col.hidden = visible.length === 0;
   }
-  const cat = e.target.closest(".sheet-cat");
-  if (cat) {
-    const open = cat.getAttribute("aria-expanded") === "true";
-    // One category open at a time keeps the sheet short.
-    document.querySelectorAll(".sheet-cat").forEach(b => { b.setAttribute("aria-expanded", false); $("sheetCat" + b.dataset.cat).hidden = true; });
-    if (!open) { cat.setAttribute("aria-expanded", true); $("sheetCat" + cat.dataset.cat).hidden = false; }
+  const layoutAll = () => root.querySelectorAll('.sn-col').forEach(layoutColumn);
+
+  function place(li) {
+    const panel = li.querySelector('.sn-panel');
+    const r = bar.getBoundingClientRect();
+    const left = li.getBoundingClientRect().left - r.left - 31;
+    panel.style.left = `${Math.max(0, Math.min(left, bar.clientWidth - panel.offsetWidth))}px`;
+    panel.style.setProperty('--sn-top', `${r.bottom}px`);
   }
-});
-render();
-if (innerWidth > 992) setOpen(true);
+  function setOpen(li, on) {
+    const btn = li.querySelector('.sn-chevron');
+    const label = li.dataset.menu;
+    li.querySelector('.sn-panel').hidden = !on;
+    li.classList.toggle('is-open', on);
+    btn.setAttribute('aria-expanded', String(on));
+    btn.setAttribute('aria-label', `${on ? 'Hide' : 'Show'} ${label} menu`);
+    if (on) place(li);
+  }
+  const isOpen = (li) => li.classList.contains('is-open');
+  const closeAll = (except) => menus.forEach((m) => m !== except && isOpen(m) && setOpen(m, false));
+
+  menus.forEach((li) => {
+    li.querySelector('.sn-chevron').addEventListener('click', (e) => {
+      e.stopPropagation();
+      clearTimeout(hoverT);
+      closeAll(li);
+      setOpen(li, !isOpen(li));
+    });
+    if (hover) {
+      li.addEventListener('pointerenter', () => { clearTimeout(hoverT); hoverT = setTimeout(() => { closeAll(li); setOpen(li, true); }, 70); });
+      li.addEventListener('pointerleave', () => { clearTimeout(hoverT); hoverT = setTimeout(() => setOpen(li, false), 240); });
+    }
+    li.querySelector('.sn-panel').addEventListener('click', (e) => {
+      e.stopPropagation();
+      const more = e.target.closest('.sn-more');
+      if (!more) return;
+      const col = more.closest('.sn-col');
+      col.dataset.open = col.dataset.open === '1' ? '0' : '1';
+      layoutColumn(col);
+      more.focus();
+    });
+  });
+  document.addEventListener('click', () => closeAll());
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    const open = menus.find(isOpen);
+    if (open) { setOpen(open, false); open.querySelector('.sn-chevron').focus(); }
+  });
+  addEventListener('resize', () => menus.forEach((m) => isOpen(m) && place(m)));
+
+  // Phone sheet: the menu button, then each menu and each group expand in place.
+  const burger = root.querySelector('.sn-burger');
+  const sheet = root.querySelector('.sn-sheet');
+  burger.addEventListener('click', () => {
+    sheet.hidden = !sheet.hidden;
+    burger.setAttribute('aria-expanded', String(!sheet.hidden));
+    burger.setAttribute('aria-label', sheet.hidden ? 'Open navigation menu' : 'Close navigation menu');
+  });
+  sheet.addEventListener('click', (e) => {
+    const toggle = e.target.closest('.sn-sheet-row[aria-controls], .sn-sheet-cat');
+    if (!toggle) return;
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    document.getElementById(toggle.getAttribute('aria-controls')).hidden = open;
+  });
+
+  // The preview bar's "Show planned pages" switch. The live site starts with planned pages hidden.
+  window.snSetPlanned = (on) => { root.dataset.showPlanned = on ? '1' : '0'; layoutAll(); };
+  layoutAll();
+})();
+
 </script>
 </body>
 </html>
